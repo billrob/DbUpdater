@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbUpdater", "DbUpdater\DbUpdater.csproj", "{4823E98B-F2E4-417C-8183-22071264F75B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{640342EB-2260-4DDC-A13D-AAECD5F46398}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbUpdater.Tests", "DbUpdater.Tests\DbUpdater.Tests.csproj", "{72EBDB37-AD66-420C-8BB4-229DCECA9916}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4823E98B-F2E4-417C-8183-22071264F75B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4823E98B-F2E4-417C-8183-22071264F75B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4823E98B-F2E4-417C-8183-22071264F75B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4823E98B-F2E4-417C-8183-22071264F75B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72EBDB37-AD66-420C-8BB4-229DCECA9916}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72EBDB37-AD66-420C-8BB4-229DCECA9916}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72EBDB37-AD66-420C-8BB4-229DCECA9916}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72EBDB37-AD66-420C-8BB4-229DCECA9916}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8266DAAB-546D-42C0-8279-DDF052367796}
+	EndGlobalSection
+EndGlobal
