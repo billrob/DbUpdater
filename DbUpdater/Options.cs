@@ -87,7 +87,7 @@ namespace DbUpdater
 		}
 
 		/// <summary>
-		/// The name of any previous backup attemps.
+		/// The connection string based on the command line arguments.
 		/// </summary>
 		public string GetConnectionString()
 		{
