@@ -47,6 +47,9 @@ namespace DbUpdater
 		[Option("debugger", Required = false, DefaultValue = false, HelpText = "If you would like the application to pause to give chance to debugger to attach.")]
 		public bool Debugger { get; set; }
 
+		[Option("createDbAsNew", Required = false, DefaultValue = false, HelpText = "If you want to create the database new each time.")]
+		public bool CreateDatabase { get; set; }
+
 		public string GetSqlPath()
 		{
 			if (SqlPath.Contains(":"))
@@ -89,13 +92,13 @@ namespace DbUpdater
 		/// <summary>
 		/// The connection string based on the command line arguments.
 		/// </summary>
-		public string GetConnectionString()
+		public string GetConnectionString(bool forMaster = false)
 		{
 
 			if (String.IsNullOrEmpty(Password) && String.IsNullOrEmpty(Username))
-				return String.Format("Integrated Security=SSPI;Initial Catalog={0};Data Source={1}", DbName, Server);
+				return String.Format("Integrated Security=SSPI;Initial Catalog={0};Data Source={1}", forMaster ? "master" : DbName, Server);
 			else
-				return String.Format("Initial Catalog={0};Data Source={1};User Id={2};Password={3}", DbName, Server, Username, Password);
+				return String.Format("Initial Catalog={0};Data Source={1};User Id={2};Password={3}", forMaster ? "master" : DbName, Server, Username, Password);
 		}
 
 		public string GetFullLogFilePath()

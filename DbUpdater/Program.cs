@@ -31,6 +31,7 @@ namespace DbUpdater
 					System.Diagnostics.Debugger.Break();
 			}
 
+			CheckForCreateDatabase(options);
 			AssertChangeLogTableExists(options);
 			CheckForBackup(options);
 			CheckForLogFile(options);
@@ -50,6 +51,19 @@ namespace DbUpdater
 			{
 				WriteLine(options, ex.ToString());
 				Environment.Exit(1);
+			}
+		}
+
+		private static void CheckForCreateDatabase(Options options)
+		{
+			if (!options.CreateDatabase)
+				return;
+
+			using (var connection = new SqlConnection(options.GetConnectionString(forMaster: true)))
+			{
+				connection.Open();
+
+				ExecuteQuery(connection, null, Sql.GET_CREATE_DATABASE(options));
 			}
 		}
 

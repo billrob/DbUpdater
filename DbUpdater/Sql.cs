@@ -26,6 +26,21 @@ BEGIN
 END", options.TablePrefix);
 
 		}
+
+		public static string GET_CREATE_DATABASE(Options options)
+		{
+			return $@"
+IF EXISTS(SELECT 1 from sys.databases WHERE Name = '{options.DbName}')
+BEGIN
+	ALTER DATABASE [{options.DbName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+	DROP DATABASE [{options.DbName}]
+END
+
+
+CREATE DATABASE [{options.DbName}]
+";
+		}
+
 		public static string GET_INSERT_PATCH(Options options)
 		{
 			return String.Format(@"			
