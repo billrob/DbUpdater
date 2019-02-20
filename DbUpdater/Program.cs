@@ -27,11 +27,14 @@ namespace DbUpdater
 
 			if (options.Debugger)
 			{
-				if(!System.Diagnostics.Debugger.IsAttached)
+				if (!System.Diagnostics.Debugger.IsAttached)
 					System.Diagnostics.Debugger.Break();
 			}
 
+			AssertSqlInjection(options);
+
 			CheckForCreateDatabase(options);
+			CheckForCreateDatabaseIfNotExists(options);
 			AssertChangeLogTableExists(options);
 			CheckForBackup(options);
 			CheckForLogFile(options);
@@ -51,6 +54,28 @@ namespace DbUpdater
 			{
 				WriteLine(options, ex.ToString());
 				Environment.Exit(1);
+			}
+		}
+
+		private static void AssertSqlInjection(Options options)
+		{
+			if (options.DbName.Contains("'"))
+				throw new NotSupportedException("Can not have ' in dbname");
+
+			if (options.TablePrefix.Contains("'"))
+				throw new NotSupportedException("Can not have ' in TablePrefix");
+		}
+
+		private static void CheckForCreateDatabaseIfNotExists(Options options)
+		{
+			if (!options.CreateDatabaseIfNotExist)
+				return;
+
+			using (var connection = new SqlConnection(options.GetConnectionString(forMaster: true)))
+			{
+				connection.Open();
+
+				ExecuteQuery(connection, null, Sql.GET_CREATE_DATABASE_IF_NOT_EXISTS(options));
 			}
 		}
 

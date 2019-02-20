@@ -41,6 +41,19 @@ CREATE DATABASE [{options.DbName}]
 ";
 		}
 
+		public static string GET_CREATE_DATABASE_IF_NOT_EXISTS(Options options)
+		{
+			return $@"
+IF NOT EXISTS(SELECT 1 from sys.databases WHERE Name = '{options.DbName}')
+BEGIN
+	CREATE DATABASE [{options.DbName}]
+END
+
+
+";
+		}
+		
+
 		public static string GET_INSERT_PATCH(Options options)
 		{
 			return String.Format(@"			

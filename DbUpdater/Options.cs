@@ -50,6 +50,11 @@ namespace DbUpdater
 		[Option("createDbAsNew", Required = false, DefaultValue = false, HelpText = "If you want to create the database new each time.")]
 		public bool CreateDatabase { get; set; }
 
+		[Option("createDbIfNotExist", Required = false, DefaultValue = false, HelpText = "Will create the database if it does not exist.")]
+		public bool CreateDatabaseIfNotExist { get; set; }
+
+
+
 		public string GetSqlPath()
 		{
 			if (SqlPath.Contains(":"))
